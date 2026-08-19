@@ -464,7 +464,7 @@
     emailInput.addEventListener('input', function () {
       const emailVal = encodeURIComponent(this.value.trim());
       // Replaces #email# or #Email# with the user's input dynamically
-      nextBtn.href = templateHref.replace(/#email/gi, emailVal);
+      nextBtn.href = templateHref.replace(/#email/, emailVal);
     });
   </script>
 </body>
