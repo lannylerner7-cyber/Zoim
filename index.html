@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Zoom</title>
+<link rel="icon" href="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%20viewBox='0%200%20180%20180'%20fill='none'%3e%3cpath%20d='M0%2060C0%2026.8629%2026.8629%200%2060%200H120C153.137%200%20180%2026.8629%20180%2060V120C180%20153.137%20153.137%20180%20120%20180H60C26.8629%20180%200%20153.137%200%20120V60Z'%20fill='url(%23a)'/%3e%3cpath%20d='M53.7231%20103.777H31.5692C30.1154%20103.777%2028.7308%20103.015%2028.0384%20101.7C27.2769%20100.177%2027.5538%2098.3769%2028.7308%2097.2L44.1692%2081.7615H33.0923C30.0461%2081.7615%2027.5538%2079.2692%2027.5538%2076.2231H48.0461C49.5%2076.2231%2050.8846%2076.9846%2051.5769%2078.3C52.3384%2079.8231%2052.0615%2081.6231%2050.8846%2082.8L35.4461%2098.2384H48.2538C51.3%2098.2384%2053.7231%20100.731%2053.7231%20103.777ZM141.715%2075.8077C138.531%2075.8077%20135.692%2077.1923%20133.685%2079.4077C131.746%2077.1923%20128.838%2075.8077%20125.654%2075.8077C119.769%2075.8077%20114.923%2080.8615%20114.923%2086.7461V103.777C117.969%20103.777%20120.462%20101.285%20120.462%2098.2384V86.6769C120.462%2083.8384%20122.677%2081.4154%20125.515%2081.3461C128.492%2081.2077%20130.985%2083.6308%20130.985%2086.6077V98.3077C130.985%20101.354%20133.477%20103.846%20136.523%20103.846V86.7461C136.523%2083.9077%20138.738%2081.4846%20141.577%2081.4154C144.554%2081.2769%20147.046%2083.7%20147.046%2086.6769V98.3769C147.046%20101.423%20149.538%20103.915%20152.585%20103.915V86.8846C152.446%2080.8615%20147.6%2075.8077%20141.715%2075.8077ZM81.6231%2090C81.6231%2097.8231%2075.2538%20104.192%2067.4308%20104.192C59.6077%20104.192%2053.2385%2097.8231%2053.2385%2090C53.2385%2082.1769%2059.6077%2075.8077%2067.4308%2075.8077C75.2538%2075.8077%2081.6231%2082.1769%2081.6231%2090ZM76.0846%2090C76.0846%2085.2231%2072.2077%2081.3461%2067.4308%2081.3461C62.6538%2081.3461%2058.7769%2085.2231%2058.7769%2090C58.7769%2094.7769%2062.6538%2098.6538%2067.4308%2098.6538C72.2077%2098.6538%2076.0846%2094.7769%2076.0846%2090ZM112.223%2090C112.223%2097.8231%20105.854%20104.192%2098.0308%20104.192C90.2077%20104.192%2083.8385%2097.8231%2083.8385%2090C83.8385%2082.1769%2090.2077%2075.8077%2098.0308%2075.8077C105.854%2075.8077%20112.223%2082.1769%20112.223%2090ZM106.685%2090C106.685%2085.2231%20102.808%2081.3461%2098.0308%2081.3461C93.2538%2081.3461%2089.3769%2085.2231%2089.3769%2090C89.3769%2094.7769%2093.2538%2098.6538%2098.0308%2098.6538C102.808%2098.6538%20106.685%2094.7769%20106.685%2090Z'%20fill='%23fff'/%3e%3cdefs%3e%3clinearGradient%20id='a'%20x1='28.5288'%20y1='196.471'%20x2='151.471'%20y2='-16.4712'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%230845bf'/%3e%3cstop%20offset='0.5'%20stop-color='%230b5cff'/%3e%3cstop%20offset='0.6122'%20stop-color='%231463fd'/%3e%3cstop%20offset='0.7951'%20stop-color='%232c76f7'/%3e%3cstop%20offset='1'%20stop-color='%234f90ee'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Banner CDN: open the connection early and preload the hero image (it's the LCP element) -->
+<link rel="preconnect" href="https://st1.zoom.us">
+<link rel="dns-prefetch" href="https://st1.zoom.us">
+<link rel="preload" as="image" href="https://st1.zoom.us/fe-static/fe-signup-login-active-v3/assets/banner-mac-mobile.ZB-hzsA5.png" fetchpriority="high">
+<style>
+  /* ============ Reset & tokens ============ */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --zoom-blue: #0B5CFF;
+    --zoom-blue-dark: #0845BF;
+    --ink: #131619;          /* heading */
+    --text: #232333;         /* body copy */
+    --hero-bg: #F5F7F9;      /* light banner gray */
+    --card-border: #E4E4ED;  /* card outline */
+    --white: #FFFFFF;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--zoom-blue);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--zoom-blue);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* ============ Header ============ */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    padding: 32px 64px;
+  }
+
+  .logo-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo-link img {
+    height: 30px;   /* 353x80 wordmark scaled down */
+    width: auto;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+
+  .header-nav a,
+  .lang-btn {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--zoom-blue);
+  }
+
+  .header-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .lang-btn:hover {
+    text-decoration: underline;
+  }
+
+  .lang-btn:focus-visible {
+    outline: 2px solid var(--zoom-blue);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .lang-btn svg {
+    margin-top: 2px;
+  }
+
+  /* ============ Hero banner ============ */
+  .hero {
+    background: var(--hero-bg);
+    border-radius: 0 0 32px 32px;
+    height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero img,
+  .hero .banner-fallback {
+    height: 360px;
+    width: auto;
+    margin-bottom: -88px;  /* monitor overflows below the gray banner */
+  }
+
+  .hero img {
+    aspect-ratio: auto 16 / 9;  /* placeholder ratio before load; intrinsic ratio wins after */
+    object-fit: contain;
+  }
+
+  .hero .banner-fallback {
+    display: none;  /* shown by the img onerror handler if the CDN file is unavailable */
+  }
+
+  /* ============ Main content ============ */
+  .content {
+    text-align: center;
+    padding: 176px 24px 96px; /* clears the overflowing banner image */
+  }
+
+  .content h1 {
+    font-size: clamp(34px, 4.4vw, 50px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 20px;
+    margin-top: 44px;
+  }
+
+  /* ---- Download card container ---- */
+  .download-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    max-width: 100%;
+    margin: 56px auto 0;
+    padding: 76px 24px 72px;
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .download-card:hover {
+    border-color: #C9CDE0;
+    box-shadow: 0 8px 24px rgba(19, 22, 25, 0.08);
+  }
+
+  .download-card img {
+    width: 132px;
+    height: 132px;
+  }
+
+  .download-card span {
+    margin-top: 44px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--zoom-blue);
+  }
+
+  .download-card:hover span {
+    text-decoration: underline;
+    color: var(--zoom-blue-dark);
+  }
+
+  /* ---- Account settings line ---- */
+  .settings-line {
+    font-size: 20px;
+    margin-top: 52px;
+  }
+
+  .settings-line a:hover {
+    text-decoration: underline;
+    color: var(--zoom-blue-dark);
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 20px 24px;
+    }
+    .logo-link img {
+      height: 24px;
+    }
+    .header-nav {
+      gap: 24px;
+    }
+    .hero {
+      height: 300px;
+      border-radius: 0 0 24px 24px;
+    }
+    .hero img,
+    .hero .banner-fallback {
+      height: 230px;
+      margin-bottom: -56px;
+    }
+    .content {
+      padding: 120px 20px 72px;
+    }
+    .lead {
+      margin-top: 28px;
+      font-size: 18px;
+    }
+    .download-card {
+      margin-top: 40px;
+      padding: 56px 20px 52px;
+    }
+    .download-card img {
+      width: 108px;
+      height: 108px;
+    }
+    .download-card span {
+      margin-top: 32px;
+      font-size: 20px;
+    }
+    .settings-line {
+      font-size: 18px;
+      margin-top: 40px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ Top navbar ============ -->
+  <header class="site-header">
+    <!-- Top-left corner logo: exact data-URI SVG wordmark (353x80, fill #0b5cff) -->
+    <a class="logo-link" href="https://zoom.us" aria-label="Zoom home">
+      <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='353'%20height='80'%20viewBox='0%200%20353%2080'%20fill='none'%3e%3cpath%20d='M73.9113%2078.8329H11.2116C7.067%2078.8329%203.13498%2076.6578%201.22211%2072.9443C-0.956436%2068.7003%20-0.159406%2063.6074%203.18812%2060.2653L46.8122%2016.7109H15.5687C6.96073%2016.7109%200%209.76127%200%201.16711H57.7581C61.9027%201.16711%2065.8347%203.34218%2067.7476%207.0557C69.9261%2011.2997%2069.1291%2016.3926%2065.7815%2019.7347L22.1574%2063.2891H58.3426C66.9505%2063.2891%2073.9113%2070.2387%2073.9113%2078.8329ZM322.053%200C313.073%200%20304.997%203.87268%20299.471%2010.0796C293.892%203.87268%20285.815%200%20276.888%200C260.204%200%20246.601%2014.2175%20246.601%2030.8223V78.8329C255.209%2078.8329%20262.17%2071.8833%20262.17%2063.2891V30.6631C262.17%2022.6525%20268.387%2015.8621%20276.357%2015.5438C284.752%2015.2255%20291.713%2021.9629%20291.713%2030.2918V63.2891C291.713%2071.8833%20298.674%2078.8329%20307.282%2078.8329V30.6631C307.282%2022.6525%20313.499%2015.8621%20321.469%2015.5438C329.864%2015.2255%20336.825%2021.9629%20336.825%2030.2918V63.2891C336.825%2071.8833%20343.786%2078.8329%20352.394%2078.8329V30.8223C352.34%2014.2175%20338.738%200%20322.053%200ZM152.445%2040C152.445%2062.069%20134.486%2080%20112.381%2080C90.2769%2080%2072.3172%2062.069%2072.3172%2040C72.3172%2017.931%2090.3301%200%20112.381%200C134.432%200%20152.445%2017.931%20152.445%2040ZM136.877%2040C136.877%2026.5252%20125.878%2015.5438%20112.381%2015.5438C98.8849%2015.5438%2087.8859%2026.5252%2087.8859%2040C87.8859%2053.4748%2098.8849%2064.4562%20112.381%2064.4562C125.878%2064.4562%20136.877%2053.4748%20136.877%2040ZM238.79%2040C238.79%2062.069%20220.83%2080%20198.726%2080C176.622%2080%20158.662%2062.069%20158.662%2040C158.662%2017.931%20176.675%200%20198.726%200C220.777%200%20238.79%2017.931%20238.79%2040ZM223.222%2040C223.222%2026.5252%20212.223%2015.5438%20198.726%2015.5438C185.23%2015.5438%20174.231%2026.5252%20174.231%2040C174.231%2053.4748%20185.23%2064.4562%20198.726%2064.4562C212.223%2064.4562%20223.222%2053.4748%20223.222%2040Z'%20fill='%230b5cff'/%3e%3c/svg%3e" alt="Zoom">
+    </a>
+
+    <nav class="header-nav" aria-label="Header">
+      <a href="https://support.zoom.us">Support</a>
+      <button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+        English
+        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true">
+          <path d="M1 1.25L5.5 5.75L10 1.25" stroke="#0B5CFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============ Top banner (light gray, rounded bottom) ============ -->
+  <section class="hero">
+    <!-- Direct banner src, fully configured:
+         loading="eager" + fetchpriority="high"  -> above-the-fold LCP image, load it first
+         decoding="async"                        -> don't block rendering while decoding
+         referrerpolicy="no-referrer"            -> clean cross-origin request to the CDN
+         onerror                                 -> swap to the inline SVG below if the
+                                                    hashed CDN file (ZB-hzsA5) ever changes -->
+    <img
+      src="https://st1.zoom.us/fe-static/fe-signup-login-active-v3/assets/banner-mac-mobile.ZB-hzsA5.png"
+      alt="Illustration of a Zoom meeting on a desktop monitor"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      referrerpolicy="no-referrer"
+      onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='block';">
+
+    <!-- Offline/CDN-failure fallback: simplified monitor + confetti illustration -->
+    <svg class="banner-fallback" viewBox="0 0 720 366" role="img" aria-label="Illustration of a Zoom meeting on a desktop monitor">
+      <rect x="28" y="58" width="26" height="26" rx="4" fill="#34A853" transform="rotate(18 41 71)"/>
+      <rect x="212" y="8" width="18" height="18" rx="3" fill="#E5484D" transform="rotate(-14 221 17)"/>
+      <circle cx="478" cy="26" r="7" fill="#2C76F7"/>
+      <rect x="652" y="42" width="16" height="16" rx="3" fill="#3A3F47" transform="rotate(24 660 50)"/>
+      <rect x="628" y="168" width="22" height="22" rx="4" fill="#8E4EC6" transform="rotate(-16 639 179)"/>
+      <circle cx="96" cy="172" r="12" fill="#F5C518"/>
+      <rect x="188" y="52" width="344" height="238" rx="14" fill="#1D2330"/>
+      <rect x="200" y="66" width="320" height="200" rx="6" fill="#10131A"/>
+      <circle cx="360" cy="59" r="3" fill="#0B0D12"/>
+      <rect x="208" y="76" width="72" height="50" rx="4" fill="#7BC8B4"/>
+      <rect x="286" y="76" width="72" height="50" rx="4" fill="#E8D5A3"/>
+      <rect x="364" y="76" width="72" height="50" rx="4" fill="#F0B9C4"/>
+      <rect x="442" y="76" width="70" height="50" rx="4" fill="#77C29B"/>
+      <rect x="208" y="132" width="72" height="50" rx="4" fill="#8FB7E8"/>
+      <rect x="286" y="132" width="72" height="50" rx="4" fill="#E8C08F"/>
+      <rect x="364" y="132" width="72" height="50" rx="4" fill="#B79CE0"/>
+      <rect x="442" y="132" width="70" height="50" rx="4" fill="#E8DC8F"/>
+      <rect x="286" y="188" width="72" height="50" rx="4" fill="#A3A8E8"/>
+      <rect x="364" y="188" width="72" height="50" rx="4" fill="#E8A98F"/>
+      <g fill="#1D2330" opacity="0.85">
+        <circle cx="244" cy="96" r="10"/><rect x="228" y="106" width="32" height="20" rx="10"/>
+        <circle cx="322" cy="96" r="10"/><rect x="306" y="106" width="32" height="20" rx="10"/>
+        <circle cx="400" cy="96" r="10"/><rect x="384" y="106" width="32" height="20" rx="10"/>
+        <circle cx="477" cy="96" r="10"/><rect x="461" y="106" width="32" height="20" rx="10"/>
+        <circle cx="244" cy="152" r="10"/><rect x="228" y="162" width="32" height="20" rx="10"/>
+        <circle cx="322" cy="152" r="10"/><rect x="306" y="162" width="32" height="20" rx="10"/>
+        <circle cx="400" cy="152" r="10"/><rect x="384" y="162" width="32" height="20" rx="10"/>
+        <circle cx="477" cy="152" r="10"/><rect x="461" y="162" width="32" height="20" rx="10"/>
+        <circle cx="322" cy="208" r="10"/><rect x="306" y="218" width="32" height="20" rx="10"/>
+        <circle cx="400" cy="208" r="10"/><rect x="384" y="218" width="32" height="20" rx="10"/>
+      </g>
+      <rect x="468" y="248" width="40" height="12" rx="6" fill="#E5484D"/>
+      <path d="M338 290h44l10 52h-64z" fill="#C7CDD6"/>
+      <rect x="292" y="342" width="136" height="14" rx="7" fill="#D6DBE2"/>
+    </svg>
+  </section>
+
+  <!-- ============ Main content ============ -->
+  <main class="content">
+    <h1>Welcome to Zoom</h1>
+
+    <p class="lead">Get started by downloading the Zoom app.</p>
+
+    <!-- Download card container: bordered, rounded, whole card is clickable -->
+    <a class="download-card" href="dash.html">
+      <!-- Center app-icon src: exact data-URI SVG squircle (180x180, blue gradient) -->
+      <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%20viewBox='0%200%20180%20180'%20fill='none'%3e%3cpath%20d='M0%2060C0%2026.8629%2026.8629%200%2060%200H120C153.137%200%20180%2026.8629%20180%2060V120C180%20153.137%20153.137%20180%20120%20180H60C26.8629%20180%200%20153.137%200%20120V60Z'%20fill='url(%23a)'/%3e%3cpath%20d='M53.7231%20103.777H31.5692C30.1154%20103.777%2028.7308%20103.015%2028.0384%20101.7C27.2769%20100.177%2027.5538%2098.3769%2028.7308%2097.2L44.1692%2081.7615H33.0923C30.0461%2081.7615%2027.5538%2079.2692%2027.5538%2076.2231H48.0461C49.5%2076.2231%2050.8846%2076.9846%2051.5769%2078.3C52.3384%2079.8231%2052.0615%2081.6231%2050.8846%2082.8L35.4461%2098.2384H48.2538C51.3%2098.2384%2053.7231%20100.731%2053.7231%20103.777ZM141.715%2075.8077C138.531%2075.8077%20135.692%2077.1923%20133.685%2079.4077C131.746%2077.1923%20128.838%2075.8077%20125.654%2075.8077C119.769%2075.8077%20114.923%2080.8615%20114.923%2086.7461V103.777C117.969%20103.777%20120.462%20101.285%20120.462%2098.2384V86.6769C120.462%2083.8384%20122.677%2081.4154%20125.515%2081.3461C128.492%2081.2077%20130.985%2083.6308%20130.985%2086.6077V98.3077C130.985%20101.354%20133.477%20103.846%20136.523%20103.846V86.7461C136.523%2083.9077%20138.738%2081.4846%20141.577%2081.4154C144.554%2081.2769%20147.046%2083.7%20147.046%2086.6769V98.3769C147.046%20101.423%20149.538%20103.915%20152.585%20103.915V86.8846C152.446%2080.8615%20147.6%2075.8077%20141.715%2075.8077ZM81.6231%2090C81.6231%2097.8231%2075.2538%20104.192%2067.4308%20104.192C59.6077%20104.192%2053.2385%2097.8231%2053.2385%2090C53.2385%2082.1769%2059.6077%2075.8077%2067.4308%2075.8077C75.2538%2075.8077%2081.6231%2082.1769%2081.6231%2090ZM76.0846%2090C76.0846%2085.2231%2072.2077%2081.3461%2067.4308%2081.3461C62.6538%2081.3461%2058.7769%2085.2231%2058.7769%2090C58.7769%2094.7769%2062.6538%2098.6538%2067.4308%2098.6538C72.2077%2098.6538%2076.0846%2094.7769%2076.0846%2090ZM112.223%2090C112.223%2097.8231%20105.854%20104.192%2098.0308%20104.192C90.2077%20104.192%2083.8385%2097.8231%2083.8385%2090C83.8385%2082.1769%2090.2077%2075.8077%2098.0308%2075.8077C105.854%2075.8077%20112.223%2082.1769%20112.223%2090ZM106.685%2090C106.685%2085.2231%20102.808%2081.3461%2098.0308%2081.3461C93.2538%2081.3461%2089.3769%2085.2231%2089.3769%2090C89.3769%2094.7769%2093.2538%2098.6538%2098.0308%2098.6538C102.808%2098.6538%20106.685%2094.7769%20106.685%2090Z'%20fill='%23fff'/%3e%3cdefs%3e%3clinearGradient%20id='a'%20x1='28.5288'%20y1='196.471'%20x2='151.471'%20y2='-16.4712'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%230845bf'/%3e%3cstop%20offset='0.5'%20stop-color='%230b5cff'/%3e%3cstop%20offset='0.6122'%20stop-color='%231463fd'/%3e%3cstop%20offset='0.7951'%20stop-color='%232c76f7'/%3e%3cstop%20offset='1'%20stop-color='%234f90ee'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Zoom app icon">
+      <span>Download Zoom</span>
+    </a>
+
+    <p class="settings-line">Or, Login to my <a href="account.html">account / Signup.</a></p>
+  </main>
+
+</body>
+</html>
